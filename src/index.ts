@@ -32,6 +32,10 @@ function createSignature({
   return hmac.update(what).digest('base64');
 }
 
+interface PaginationOptions {
+  limit?: number;
+}
+
 export default function createClient({
   secret,
   apiKey,
@@ -62,6 +66,36 @@ export default function createClient({
       },
     };
   });
+
+  // @ts-ignore
+  instance.getPaginated = async (
+    url: string,
+    config: AxiosRequestConfig,
+    paginationOptions: PaginationOptions,
+  ) => {
+    const limit = paginationOptions?.limit || Infinity;
+    const data = [];
+    let cursor;
+
+    while (data.length < limit) {
+      console.log(data.length);
+      // @ts-ignore
+      // eslint-disable-next-line no-await-in-loop
+      const nextResponse = await instance.get(url, {
+        ...config,
+        params:
+        { ...config.params, after: cursor },
+      });
+      const nextData = nextResponse.data;
+      if (!nextData || nextData.length === 0) {
+        return data;
+      }
+      data.push(...nextData);
+      cursor = nextResponse.headers['CB-AFTER'];
+    }
+
+    return data;
+  };
 
   return instance;
 }
