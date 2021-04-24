@@ -1,0 +1,40 @@
+{
+  "name": "cb-pro-api",
+  "version": "0.0.21",
+  "description": "A minimal client to use the Coinbase Pro REST API, based on Axios",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaslin/cbpro.git"
+  },
+  "keywords": [
+    "coinbase",
+    "trading",
+    "crypto"
+  ],
+  "author": "Lucas Lin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucaslin/cbpro/issues"
+  },
+  "homepage": "https://github.com/lucaslin/cbpro#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.37",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
